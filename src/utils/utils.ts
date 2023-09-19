@@ -23,6 +23,4 @@ export const calculateWinner = (squares: Cells) => {
   return null;
 };
 
-// export const isWinner = (index: number, item: string) => {
-//   item?.includes(index);
-// };
+export const isWinner = (win: string | null, squares: Cells) => !win && squares.filter((value) => value).length === 9;
