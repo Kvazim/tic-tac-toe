@@ -3,7 +3,7 @@ import Symbol from '../symbol/symbol';
 import './style.css';
 import { DefoultSymbol } from '../../const';
 import { Cells } from '../../types/cells';
-import { calculateWinner } from '../../utils/utils';
+import { calculateWinner, isWinner } from '../../utils/utils';
 
 function App(): JSX.Element {
   const [ cells, setCells ] = useState<Cells>([null, null, null, null, null, null, null, null, null]);
@@ -24,7 +24,10 @@ function App(): JSX.Element {
 
   return (
     <div className="game">
-      <p className="game-info">Ход: <Symbol symbol={currentStep}/></p>
+      <p className="game-info">
+        { isWinner(isWin, cells) ? 'Ничья' : isWin ? 'Победитель' : 'Ход'}
+        <Symbol symbol={currentStep}/>
+      </p>
       <div className={`game-field ${isWin ? 'game-field--win' : ''}`}>
         {
           cells.map((cell, index) => (
