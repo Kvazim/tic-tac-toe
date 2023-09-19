@@ -23,9 +23,9 @@ function App(): JSX.Element {
   };
 
   return (
-    <div className={`game ${isWin ? 'game--win' : ''}`}>
+    <div className="game">
       <p className="game-info">Ход: <Symbol symbol={currentStep}/></p>
-      <div className="game-field">
+      <div className={`game-field ${isWin ? 'game-field--win' : ''}`}>
         {
           cells.map((cell, index) => (
             <button

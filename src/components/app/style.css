@@ -18,10 +18,6 @@ body,
     border-radius: 15px;
 }
 
-.game--win {
-    opacity: 0.4;
-}
-
 .game-info {
     margin: 0;
     padding: 0;
@@ -35,6 +31,10 @@ body,
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border: 1px solid #000;
+}
+
+.game-field--win {
+    opacity: 0.4;
 }
 
 .cell {
