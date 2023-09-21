@@ -1,0 +1,14 @@
+.symbol {
+    margin-left: 10px;
+    font-weight: 900;
+    font-size: 45px;
+    line-height: 30px;
+}
+
+.symbol--x {
+    color: green;
+}
+
+.symbol--o {
+    color: red;
+}

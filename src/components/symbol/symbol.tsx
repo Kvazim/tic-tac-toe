@@ -1,3 +1,4 @@
+import './style.css';
 import { getSymbolSlassName } from '../../utils/utils';
 
 type SymbolProp = {

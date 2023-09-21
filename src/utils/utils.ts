@@ -23,4 +23,13 @@ export const calculateWinner = (squares: Cells) => {
   return null;
 };
 
-export const isWinner = (win: string | null, squares: Cells) => !win && squares.filter((value) => value).length === 9;
+export const getWinner = (win: string | null, squares: Cells) => !win && squares.filter((value) => value).length === 9;
+export const getTitle = (win: string | null, squares: Cells) => {
+  if (getWinner(win, squares)) {
+    return 'Ничья';
+  }
+  if (win) {
+    return 'Победитель';
+  }
+  return 'Ход';
+};

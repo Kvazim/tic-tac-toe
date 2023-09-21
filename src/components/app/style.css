@@ -29,7 +29,8 @@ body,
 
 .game-field {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 50px);
+    justify-content: center;
     border: 1px solid #000;
 }
 
@@ -53,16 +54,7 @@ body,
     background-color: hotpink;
 }
 
-.symbol {
-    font-weight: 900;
-    font-size: 45px;
-    line-height: 30px;
-}
-
-.symbol--x {
-    color: green;
-}
-
-.symbol--o {
-    color: red;
+.game__reset {
+    margin-top: 10px;
+    cursor: pointer;
 }

@@ -3,7 +3,8 @@ import Symbol from '../symbol/symbol';
 import './style.css';
 import { DefoultSymbol } from '../../const';
 import { Cells } from '../../types/cells';
-import { calculateWinner, isWinner } from '../../utils/utils';
+import { calculateWinner, getTitle } from '../../utils/utils';
+import ResetButton from '../reset-button/reset-button';
 
 function App(): JSX.Element {
   const [ cells, setCells ] = useState<Cells>([null, null, null, null, null, null, null, null, null]);
@@ -11,7 +12,7 @@ function App(): JSX.Element {
   const [ isWin, setIsWin] = useState<string | null>(null);
 
   const onCellClick = (index: number) => {
-    if (cells[index]) {
+    if (cells[index] || isWin) {
       return;
     }
 
@@ -25,8 +26,8 @@ function App(): JSX.Element {
   return (
     <div className="game">
       <p className="game-info">
-        { isWinner(isWin, cells) ? 'Ничья' : isWin ? 'Победитель' : 'Ход'}
-        <Symbol symbol={currentStep}/>
+        { getTitle(isWin, cells) }
+        {!isWin ? <Symbol symbol={currentStep}/> : <Symbol symbol={isWin}/>}
       </p>
       <div className={`game-field ${isWin ? 'game-field--win' : ''}`}>
         {
@@ -42,6 +43,7 @@ function App(): JSX.Element {
           ))
         }
       </div>
+      <ResetButton setCells={setCells} setCurrentStep={setCurrentStep} setIsWin={setIsWin}/>
     </div>
   );
 }
