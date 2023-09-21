@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import Symbol from '../symbol/symbol';
 import './style.css';
 import { DefoultSymbol } from '../../const';
 import { Cells } from '../../types/cells';
-import { calculateWinner, getTitle, getWinner } from '../../utils/utils';
+import { calculateWinner } from '../../utils/utils';
 import ResetButton from '../reset-button/reset-button';
+import GameInfo from '../game-info/game-info';
+import ButtonCell from '../button-cell/button-cell';
 
 function App(): JSX.Element {
   const [ cells, setCells ] = useState<Cells>([null, null, null, null, null, null, null, null, null]);
@@ -28,25 +29,11 @@ function App(): JSX.Element {
 
   return (
     <div className="game">
-      <p className="game-info">
-        { getTitle(isWin, cells) }
-        {
-          !getWinner(isWin, cells)
-          &&
-          isWin === null ? <Symbol symbol={currentStep}/> : <Symbol symbol={isWin}/>
-        }
-      </p>
+      <GameInfo isWin={isWin} cells={cells} currentStep={currentStep} />
       <div className={`game-field ${isWin ? 'game-field--win' : ''}`}>
         {
           cells.map((cell, index) => (
-            <button
-              key={String(cell) + String(index)}
-              type='button'
-              className={`cell ${isWin && isWin === cell ? 'cell--win' : ''}`}
-              onClick={() => onCellClick(index)}
-            >
-              <Symbol symbol={cell}/>
-            </button>
+            <ButtonCell key={String(cell) + String(index)} cell={cell} isWin={isWin} onCellClick={() => onCellClick(index)}/>
           ))
         }
       </div>
