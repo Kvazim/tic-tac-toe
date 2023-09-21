@@ -3,7 +3,7 @@ import Symbol from '../symbol/symbol';
 import './style.css';
 import { DefoultSymbol } from '../../const';
 import { Cells } from '../../types/cells';
-import { calculateWinner, getTitle } from '../../utils/utils';
+import { calculateWinner, getTitle, getWinner } from '../../utils/utils';
 import ResetButton from '../reset-button/reset-button';
 
 function App(): JSX.Element {
@@ -18,8 +18,11 @@ function App(): JSX.Element {
 
     const cellsCopy = cells.slice();
     cellsCopy[index] = currentStep;
-    setIsWin(calculateWinner(cellsCopy));
     setCells(cellsCopy);
+
+    const winner = calculateWinner(cellsCopy);
+    setIsWin(winner);
+
     setCurrentStep(currentStep === DefoultSymbol.Symbol_X ? DefoultSymbol.Symbol_O : DefoultSymbol.Symbol_X);
   };
 
@@ -27,7 +30,11 @@ function App(): JSX.Element {
     <div className="game">
       <p className="game-info">
         { getTitle(isWin, cells) }
-        {!isWin ? <Symbol symbol={currentStep}/> : <Symbol symbol={isWin}/>}
+        {
+          !getWinner(isWin, cells)
+          &&
+          isWin === null ? <Symbol symbol={currentStep}/> : <Symbol symbol={isWin}/>
+        }
       </p>
       <div className={`game-field ${isWin ? 'game-field--win' : ''}`}>
         {

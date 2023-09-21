@@ -29,7 +29,7 @@ export const getTitle = (win: string | null, squares: Cells) => {
     return 'Ничья';
   }
   if (win) {
-    return 'Победитель';
+    return 'Победитель:';
   }
-  return 'Ход';
+  return 'Ход:';
 };

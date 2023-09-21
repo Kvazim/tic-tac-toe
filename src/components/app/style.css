@@ -30,7 +30,8 @@ body,
 .game-field {
     display: grid;
     grid-template-columns: repeat(3, 50px);
-    justify-content: center;
+    width: fit-content;
+    margin: 0 auto;
     border: 1px solid #000;
 }
 
@@ -52,9 +53,4 @@ body,
 
 .cell--win {
     background-color: hotpink;
-}
-
-.game__reset {
-    margin-top: 10px;
-    cursor: pointer;
 }
